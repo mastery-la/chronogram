@@ -9,7 +9,7 @@ export const saveImage = async (
     data: Buffer
 ): Promise<string> => {
     const { path, host, id } = snapshot
-    const filename = `${host}/${id}/${path}.png`
+    const filename = `${host}/${id}-${path}.png`
     const file = bucket.file(filename)
     await file.save(data, { public: true })
 
