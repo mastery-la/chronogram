@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { parse } from 'url'
 import { isValidURL, formatURL, getInt } from './validator'
-import { getScreenshot } from './chromium'
+import { getScreenshot } from './proxy'
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
     try {
@@ -30,7 +30,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
             )
             res.statusCode = 200
             res.setHeader('Content-Type', `image/${type}`)
-            res.end(file)
+            res.end(file.buffer)
         }
     } catch (err) {
         console.log(err)

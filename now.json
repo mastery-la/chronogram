@@ -12,7 +12,7 @@
         },
         {
             "src": "src/endpoints/**/index.ts",
-            "use": "@now/node",
+            "use": "@now/node@canary",
             "config": {
                 "maxLambdaSize": "40mb"
             }
