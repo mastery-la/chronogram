@@ -5,7 +5,17 @@
   "builds": [
     {
       "src": "src/index.ts",
-      "use": "@now/node@canary"
+      "use": "@now/node@canary",
+      "config": {
+        "maxLambdaSize": "40mb"
+      }
+    },
+    {
+      "src": "src/endpoints/**/index.ts",
+      "use": "@now/node@canary",
+      "config": {
+        "maxLambdaSize": "40mb"
+      }
     }
   ],
   "routes": [
@@ -15,7 +25,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "src/endpoints/$1.ts"
+      "dest": "src/endpoints/$1"
     }
   ]
 }
