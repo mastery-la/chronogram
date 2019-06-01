@@ -1,18 +1,17 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import { parse } from 'url'
 import { isValidURL, formatURL } from './validator'
 import { getScreenshot } from './proxy'
-import fs from 'fs-extra'
+import { saveImage } from './storage'
+import { json, send } from 'micro'
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-    try {
-        const { query = {} } = parse(req.url || '', true)
-        const { url = '' } = query
-        const formattedURL = formatURL(url)
+    if (req.method != 'POST') {
+        send(res, 404)
+    }
 
-        const payload: RequestScreenshot = {
-            url: formattedURL
-        }
+    try {
+        const payload: RequestScreenshotPayload = await json(req)
+        const formattedURL = formatURL(payload.url || '')
 
         if (!isValidURL(formattedURL)) {
             const result: RequestScreenshotResult = {
@@ -26,12 +25,12 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
             res.end(JSON.stringify(result))
         } else {
             const file = await getScreenshot(formattedURL)
-            await fs.writeFile('/tmp/screenshot.png', file)
+            const imageURL = await saveImage(file)
 
             const result: RequestScreenshotResult = {
                 ...payload,
                 success: true,
-                screenshot: 'https://coming.soon/screenshot.png'
+                screenshot: imageURL
             }
 
             res.statusCode = 200

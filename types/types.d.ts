@@ -21,12 +21,12 @@ declare interface ZEITTeam {
 
 declare type ZEITVitals = ZEITUser & ZEITTeam
 
-declare interface RequestScreenshot {
-    url: string
+declare interface RequestScreenshotPayload {
+    url?: string
 }
 
 declare interface RequestScreenshotResult {
-    url: string
+    url?: string
     screenshot?: string
     error?: string
     success: boolean

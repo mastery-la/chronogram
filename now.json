@@ -27,5 +27,10 @@
             "src": "/(.*)",
             "dest": "src/endpoints/$1"
         }
-    ]
+    ],
+    "env": {
+        "GCLOUD_CREDENTIALS": "@gcloud-credentials",
+        "STORAGE_BUCKET": "chronogram",
+        "BASE_URL": "https://chronogram.now.sh/"
+    }
 }
