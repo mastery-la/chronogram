@@ -4,13 +4,17 @@
     "dev": "now dev -p 5005"
   },
   "dependencies": {
+    "@zeit/fetch": "^5.1.0",
     "@zeit/integration-utils": "latest",
+    "chrome-aws-lambda": "^1.17.1",
     "cookie": "^0.4.0",
     "googleapis": "^39.2.0",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
     "ms": "^2.1.1",
     "node-fetch": "^2.6.0",
+    "puppeteer": "^1.17.0",
+    "puppeteer-core": "^1.17.0",
     "querystring": "^0.2.0",
     "uid-promise": "^1.1.0"
   },
@@ -21,6 +25,8 @@
     "@types/ms": "^0.7.30",
     "@types/node": "^12.0.2",
     "@types/node-fetch": "^2.3.4",
+    "@types/puppeteer": "^1.12.4",
+    "@types/puppeteer-core": "^1.9.0",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "@zeit/git-hooks": "0.1.4",
