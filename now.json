@@ -27,5 +27,9 @@
             "src": "/(.*)",
             "dest": "src/endpoints/$1"
         }
-    ]
+    ],
+    "env": {
+        "STORAGE_BUCKET": "chronogram",
+        "BASE_URL": "https://chronogram.now.sh/"
+    }
 }
