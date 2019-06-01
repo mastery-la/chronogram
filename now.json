@@ -6,24 +6,12 @@
     {
       "src": "src/index.ts",
       "use": "@now/node@canary"
-    },
-    {
-      "src": "static/*.png",
-      "use": "@now/optipng"
-    },
-    {
-      "src": "static/*.svg",
-      "use": "@now/static"
     }
   ],
   "routes": [
     {
       "src": "/",
       "dest": "src/index.ts"
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "static/$1"
     },
     {
       "src": "/(.*)",
