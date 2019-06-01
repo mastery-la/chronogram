@@ -11,7 +11,14 @@ export const saveImage = async (
     const { path, host, id } = snapshot
     const filename = `${host}/${id}-${path}.png`
     const file = bucket.file(filename)
-    await file.save(data, { public: true })
+    await file.save(data, {
+        public: true,
+        contentType: 'image/png',
+
+        metadata: {
+            'Cache-Control': 'public, s-max-age=31536000, immutable'
+        }
+    })
 
     return `https://storage.googleapis.com/${bucket.name}/${filename}`
 }
