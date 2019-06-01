@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import { isValidURL, formatURL } from './validator'
+import { formatURL, createURLSnapshot } from './format-url'
 import { getScreenshot } from './proxy'
 import { saveImage } from './storage'
 import { json, send } from 'micro'
@@ -10,11 +10,11 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     }
 
     try {
-        const payload: RequestScreenshotPayload = await json(req)
+        const payload: ScreenshotPayload = await json(req)
         const formattedURL = formatURL(payload.url || '')
 
-        if (!isValidURL(formattedURL)) {
-            const result: RequestScreenshotResult = {
+        if (!formattedURL) {
+            const result: ScreenshotResult = {
                 ...payload,
                 error: 'invalid url',
                 success: false
@@ -24,10 +24,15 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(result))
         } else {
-            const file = await getScreenshot(formattedURL)
-            const imageURL = await saveImage(file)
+            const snapshot = createURLSnapshot(formattedURL)
+            if (!snapshot) {
+                throw 'invalid snapshot from url'
+            }
 
-            const result: RequestScreenshotResult = {
+            const data = await getScreenshot(formattedURL)
+            const imageURL = await saveImage(snapshot, data)
+
+            const result: ScreenshotResult = {
                 ...payload,
                 success: true,
                 screenshot: imageURL
@@ -38,9 +43,8 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
             res.end(JSON.stringify(result))
         }
     } catch (err) {
-        const result: RequestScreenshotResult = {
-            url: '',
-            error: 'unknown',
+        const result: ScreenshotResult = {
+            error: err || 'unknown error',
             success: false
         }
 
