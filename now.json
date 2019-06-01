@@ -29,7 +29,6 @@
         }
     ],
     "env": {
-        "GCLOUD_CREDENTIALS": "@gcloud-credentials",
         "STORAGE_BUCKET": "chronogram",
         "BASE_URL": "https://chronogram.now.sh/"
     }
