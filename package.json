@@ -8,6 +8,7 @@
     "@zeit/integration-utils": "latest",
     "chrome-aws-lambda": "^1.17.1",
     "cookie": "^0.4.0",
+    "fs-extra": "^8.0.1",
     "googleapis": "^39.2.0",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@types/cookie": "^0.3.2",
+    "@types/fs-extra": "^7.0.0",
     "@types/micro": "^7.3.3",
     "@types/micro-cors": "^0.1.0",
     "@types/ms": "^0.7.30",
