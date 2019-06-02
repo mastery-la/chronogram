@@ -22,7 +22,7 @@ declare interface ZEITTeam {
 declare type ZEITVitals = ZEITUser & ZEITTeam
 
 declare interface URLSnapshot {
-    id: string
+    folder: string
     url: string
     host: string
     path: string
