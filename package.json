@@ -4,6 +4,7 @@
     "dev": "now dev -p 5005"
   },
   "dependencies": {
+    "@google-cloud/firestore": "^2.1.1",
     "@google-cloud/storage": "^2.5.0",
     "@zeit/fetch": "^5.1.0",
     "@zeit/integration-utils": "latest",
