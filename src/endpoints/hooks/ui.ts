@@ -6,9 +6,9 @@ export default withUiHook(
         const metadata: { [key: string]: any } = await zeitClient.getMetadata()
         console.log('METADATA', metadata)
 
-        const { token, teamId, integrationId, configurationId, slug } = payload
+        const { teamId, integrationId, configurationId, slug } = payload
         const client = new ZeitClient({
-            token,
+            token: 'J38YcYGizh7XyP2rIfl0wdrg',
             teamId,
             integrationId,
             configurationId,
@@ -41,6 +41,7 @@ export default withUiHook(
 
 const AccountView = ({ enabled }: { enabled: boolean }) => htm`
   <Page>
+    <ProjectSwitcher />
     ${
         enabled
             ? htm`<Button warning action="disable">Disable Chronogram</Button>`
@@ -60,6 +61,7 @@ const enableWebhook = async (client: ZeitClient) => {
     const json = await res.json()
     console.log('enableWebhook', json)
 }
+
 const disableWebhook = async (client: ZeitClient) => {
     console.log('client', client)
 }
