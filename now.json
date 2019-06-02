@@ -27,6 +27,6 @@
     ],
     "env": {
         "STORAGE_BUCKET": "chronogram",
-        "BASE_URL": "https://cde6ce8b.ngrok.io"
+        "BASE_URL": "https://9f3fd919.ngrok.io"
     }
 }

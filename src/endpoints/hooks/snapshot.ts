@@ -1,8 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import { formatURL, createURLSnapshot } from './format-url'
-import { getScreenshot } from './proxy'
-import { saveImage } from './storage'
 import { json, send } from 'micro'
+import { formatURL, createURLSnapshot } from '../../utils/format-url'
+import { getScreenshot } from '../../utils/proxy'
+import { saveImage } from '../../utils/storage'
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
     if (req.method != 'POST') {
@@ -11,6 +11,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
     try {
         const payload: ScreenshotPayload = await json(req)
+        console.log('payload', payload)
         const formattedURL = formatURL(payload.url || '')
         const userID = payload.userID
             ? Array.isArray(payload.userID)

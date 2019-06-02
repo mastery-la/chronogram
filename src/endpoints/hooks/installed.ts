@@ -32,8 +32,10 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
             redirect_uri: REDIRECT_URL
         })
     })
+    console.log('token res', tokenRes)
 
     const tokenPayload = await tokenRes.json()
+    console.log('token payload', tokenPayload)
     const token: string = tokenPayload['access_token'] || ''
 
     const teamId = query.teamId

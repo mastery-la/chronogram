@@ -9,7 +9,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     const url = data.payload.url
     const userID: string | null = data.userId || data.teamId || null
 
-    const snapshot = await fetch(process.env.BASE_URL + '/snapshot', {
+    const snapshot = await fetch(process.env.BASE_URL + '/hooks/snapshot', {
         method: 'POST',
         body: JSON.stringify({
             url,

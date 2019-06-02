@@ -1,5 +1,5 @@
 import { Storage } from '@google-cloud/storage'
-import { credentials } from '../../utils/gcloud-credentials'
+import { credentials } from './gcloud-credentials'
 import { screenshotFilename } from './filename'
 
 const storage = new Storage({ credentials })
@@ -14,6 +14,7 @@ export const saveImage = async (
     const file = bucket.file(`${userID}/${filename}`)
     await file.save(data, {
         public: true,
+        contentType: 'image/png',
         metadata: {
             'Cache-Control': 'public, s-max-age=31536000, immutable'
         }
