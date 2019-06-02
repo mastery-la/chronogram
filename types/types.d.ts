@@ -30,6 +30,7 @@ declare interface URLSnapshot {
 
 declare interface ScreenshotPayload {
     url?: string
+    userID?: string
 }
 
 declare interface ScreenshotResult {

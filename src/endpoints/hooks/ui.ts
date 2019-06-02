@@ -28,25 +28,22 @@ export default withUiHook(
         }
 
         if (action == 'disable') {
-            await disableWebhook(client)
+            await disableWebhook(client, 'hook_UnngUSXNyOBWOAho')
+            await disableWebhook(client, 'hook_qA0kQKRy8hYSQNZt')
+
             metadata['enabled'] = false
             await zeitClient.setMetadata(metadata)
         }
 
-        const enabled = metadata['enabled'] || false
+        // const enabled = metadata['enabled'] || false
 
-        return AccountView({ enabled })
+        return AccountView()
     }
 )
 
-const AccountView = ({ enabled }: { enabled: boolean }) => htm`
+const AccountView = () => htm`
   <Page>
-    <ProjectSwitcher />
-    ${
-        enabled
-            ? htm`<Button warning action="disable">Disable Chronogram</Button>`
-            : htm`<Button secondary action="enable">Enable Chronogram</Button>`
-    }      
+    <H1>Hello</H1>
   </Page>
 `
 
@@ -62,6 +59,9 @@ const enableWebhook = async (client: ZeitClient) => {
     console.log('enableWebhook', json)
 }
 
-const disableWebhook = async (client: ZeitClient) => {
-    console.log('client', client)
+const disableWebhook = async (client: ZeitClient, id: string) => {
+    const res = await client.fetch('/v1/integrations/webhooks/' + id, {
+        method: 'DELETE'
+    })
+    console.log('disableWebhook', res)
 }

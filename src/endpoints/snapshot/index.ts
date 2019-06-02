@@ -12,6 +12,25 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     try {
         const payload: ScreenshotPayload = await json(req)
         const formattedURL = formatURL(payload.url || '')
+        const userID = payload.userID
+            ? Array.isArray(payload.userID)
+                ? payload.userID.join('')
+                : payload.userID
+            : null
+
+        if (!userID) {
+            const result: ScreenshotResult = {
+                ...payload,
+                error: 'must provide userID',
+                success: false
+            }
+
+            res.statusCode = 400
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify(result))
+
+            return
+        }
 
         if (!formattedURL) {
             const result: ScreenshotResult = {
@@ -30,7 +49,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
             }
 
             const data = await getScreenshot(formattedURL)
-            const imageURL = await saveImage(snapshot, data)
+            const imageURL = await saveImage(userID, snapshot, data)
 
             const result: ScreenshotResult = {
                 ...payload,

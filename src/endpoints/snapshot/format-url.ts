@@ -1,4 +1,5 @@
 import { URL, parse } from 'url'
+import { slug } from 'cuid'
 
 export const formatURL = (str: string | string[]): URL | null => {
     let url: string
@@ -26,13 +27,8 @@ export const createURLSnapshot = (url: URL): URLSnapshot | null => {
     }
     const now = new Date()
     const iso = now.toISOString()
-    const [date, time] = iso.split('T')
-    const datePath = date.split('-').join('/')
-    const timeString = time
-        .split(':')
-        .slice(0, 2)
-        .join('-')
-    const folder = `${datePath}/${timeString}`
+    const [date] = iso.split('T')
+    const folder = `${date}-${slug()}`
 
     return {
         folder,
@@ -41,12 +37,3 @@ export const createURLSnapshot = (url: URL): URLSnapshot | null => {
         path: path == '/' ? 'index' : path
     }
 }
-
-// export const urlSnapshot = (str: string | string[]): URLSnapshot | null {
-//   if (Array.isArray(str)) {
-//     return null
-//   }
-//   return {
-//     url: str,
-//   }
-// }
