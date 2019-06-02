@@ -27,6 +27,6 @@
     ],
     "env": {
         "STORAGE_BUCKET": "chronogram",
-        "BASE_URL": "https://chronogram.now.sh"
+        "BASE_URL": "https://chronogram.tech"
     }
 }
