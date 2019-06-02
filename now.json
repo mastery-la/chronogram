@@ -1,27 +1,24 @@
 {
     "name": "chronogram",
-    "alias": "chronogram.now.sh",
+    "alias": ["chronogram.now.sh", "chronogram.tech"],
     "version": 2,
     "builds": [
         {
-            "src": "src/index.ts",
+            "src": "src/endpoints/**/*.ts",
             "use": "@now/node@canary",
             "config": {
-                "maxLambdaSize": "40mb"
-            }
-        },
-        {
-            "src": "src/endpoints/**/index.ts",
-            "use": "@now/node@canary",
-            "config": {
-                "maxLambdaSize": "40mb"
+                "maxLambdaSize": "15mb"
             }
         }
     ],
     "routes": [
         {
             "src": "/",
-            "dest": "src/index.ts"
+            "dest": "src/endpoints/hooks/ui.ts"
+        },
+        {
+            "src": "/hooks/(.*)",
+            "dest": "src/endpoints/hooks/$1.ts"
         },
         {
             "src": "/(.*)",
