@@ -1,6 +1,6 @@
 {
     "name": "chronogram",
-    "alias": "chronogram.now.sh",
+    "alias": ["chronogram.now.sh", "chronogram.tech"],
     "version": 2,
     "builds": [
         {
