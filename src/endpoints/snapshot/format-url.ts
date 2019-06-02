@@ -1,5 +1,4 @@
 import { URL, parse } from 'url'
-import cuid from 'cuid'
 
 export const formatURL = (str: string | string[]): URL | null => {
     let url: string
@@ -25,9 +24,18 @@ export const createURLSnapshot = (url: URL): URLSnapshot | null => {
     if (!host || !path) {
         return null
     }
+    const now = new Date()
+    const iso = now.toISOString()
+    const [date, time] = iso.split('T')
+    const datePath = date.split('-').join('/')
+    const timeString = time
+        .split(':')
+        .slice(0, 2)
+        .join('-')
+    const folder = `${datePath}/${timeString}`
 
     return {
-        id: cuid(),
+        folder,
         url: url.toString(),
         host,
         path: path == '/' ? 'index' : path
