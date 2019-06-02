@@ -1,4 +1,4 @@
-import fetch from '../../util/fetch'
+import fetch from '../../utils/fetch'
 import { URL } from 'url'
 
 const screenshotService = 'https://screenshot-v2.now.sh'
