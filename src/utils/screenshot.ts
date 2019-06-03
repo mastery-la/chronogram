@@ -8,8 +8,7 @@ export async function getScreenshot(
   const browser = await puppeteer.launch({
     defaultViewport: {
       width: 1440,
-      height: 900,
-      deviceScaleFactor: 2
+      height: 900
     },
     args: chrome.args,
     executablePath: await chrome.executablePath,
