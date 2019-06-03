@@ -72,13 +72,14 @@ const checkDeploymentReady = async (
   headers.set('Authorization', `Bearer ${token}`)
 
   let deployment: { [key: string]: any }
+  let attempts = 0
   while (true) {
+    attempts++
     const data = await fetch(url, {
       method: 'GET',
       headers
     })
     deployment = await data.json()
-    console.log('deployment', deployment)
 
     if (
       !deployment.readyState ||
@@ -87,7 +88,15 @@ const checkDeploymentReady = async (
     ) {
       break
     }
-    await sleep(3000)
+    const wait =
+      attempts < 10
+        ? 3000
+        : attempts < 30
+        ? 9000
+        : attempts < 50
+        ? 15000
+        : 30000
+    await sleep(wait)
   }
 
   return false
