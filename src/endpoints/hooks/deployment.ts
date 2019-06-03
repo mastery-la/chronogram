@@ -85,11 +85,7 @@ const checkDeploymentReady = async (
     })
     deployment = await data.json()
 
-    if (
-      !deployment.readyState ||
-      deployment.readyState == 'READY' ||
-      deployment.readyState == 'ERROR'
-    ) {
+    if (deployment.readyState == 'READY' || deployment.readyState == 'ERROR') {
       break
     }
     const wait =
