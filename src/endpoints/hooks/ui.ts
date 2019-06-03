@@ -35,6 +35,12 @@ export default withUiHook(
             await zeitClient.setMetadata(metadata)
         }
 
+        const projectsData = await zeitClient.fetch('/v1/projects/list', {
+            method: 'GET'
+        })
+        const projects = await projectsData.json()
+        console.log('projects', projects)
+
         // const enabled = metadata['enabled'] || false
 
         return AccountView()

@@ -4,6 +4,10 @@ import { IncomingMessage, ServerResponse } from 'http'
 import fetch from '../../utils/fetch'
 import { ZeitClient } from '@zeit/integration-utils'
 import { send } from 'micro'
+import * as mongoose from 'mongoose'
+import { ConfigurationModel, TokenModel, WebhookModel } from '../../models'
+
+mongoose.connect(process.env.MONGO_URL || '', { useNewUrlParser: true })
 
 const CLIENT_ID = 'oac_58Yj1PeseMx29XWIqCBErVrd'
 const CLIENT_SECRET = 'yATPBGXg17jnzWClBGDI0h3J'
@@ -18,6 +22,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     }
 
     const { query } = parseURL(req.url || '', true)
+    console.log('query', query)
 
     // get an access token
     const tokenRes = await fetch('https://api.zeit.co/v2/oauth/access_token', {
@@ -44,6 +49,14 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
             : query.teamId
         : null
 
+    const c = new ConfigurationModel()
+    const t = new TokenModel()
+    c.configurationId = query.configurationId as string
+    t.access_token = token
+    t.userId = tokenPayload['user_id']
+    t.teamId = tokenPayload['team_id']
+    c.token = t
+
     // if we have a valid token and team id, we register the webhook
     if (token != '') {
         // @ts-ignore
@@ -62,11 +75,20 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
             }
         )
         console.log(hookInfo)
+
+        const w = new WebhookModel()
+        w.id = hookInfo['id']
+        w.name = hookInfo['name']
+        w.url = hookInfo['url']
+        w.createdAt = hookInfo['createdAt']
+
+        c.webhook = w
+        await c.save()
     }
 
     // and finally, we redirect to fininsh the OAuth flow
     res.writeHead(302, {
         Location: query.next
     })
-    res.end('Redirecting..')
+    res.end('Redirecting...')
 }

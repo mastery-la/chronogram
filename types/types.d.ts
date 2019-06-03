@@ -1,3 +1,5 @@
+import deployment from '../src/endpoints/hooks/deployment'
+
 declare interface ZEITUser {
     uid: string
     email: string
