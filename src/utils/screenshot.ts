@@ -7,8 +7,9 @@ export async function getScreenshot(
 ): Promise<Buffer> {
   const browser = await puppeteer.launch({
     defaultViewport: {
-      width: 1460,
-      height: 980
+      width: 1440,
+      height: 900,
+      deviceScaleFactor: 2
     },
     args: chrome.args,
     executablePath: await chrome.executablePath,
@@ -16,8 +17,7 @@ export async function getScreenshot(
   })
 
   const page = await browser.newPage()
-  page.browser
-  await page.goto(url)
+  await page.goto(url, { waitUntil: 'networkidle2' })
   const file = await page.screenshot({ type, fullPage: true })
   await browser.close()
   return file
