@@ -1,47 +1,47 @@
 .style01 .interactive {
-    position: relative;
-    box-sizing: border-box;
+  position: relative;
+  box-sizing: border-box;
 
-    width: calc(100% - 180px);
+  width: calc(100% - 180px);
 
-    min-height: 10px;
+  min-height: 10px;
 
-    background-color: #ffffff;
-    vertical-align: middle;
+  background-color: #ffffff;
+  vertical-align: middle;
 
-    border: 1px solid #000000;
-    border-radius: 5px;
+  border: 1px solid #000000;
+  border-radius: 5px;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .style01 .date {
-    position: relative;
-    box-sizing: border-box;
+  position: relative;
+  box-sizing: border-box;
 
-    width: 40px;
+  width: 40px;
 }
 
 .style01 .titleContainer {
-    box-sizing: border-box;
-    width: 100px;
-    text-align: right;
+  box-sizing: border-box;
+  width: 100px;
+  text-align: right;
 
-    padding-right: 8px;
+  padding-right: 8px;
 
-    display: flex;
-    flex-direction: column;
-    float: left;
+  display: flex;
+  flex-direction: column;
+  float: left;
 }
 
 .style01 .interactive .row {
-    background-color: #9a9a9a;
+  background-color: #9a9a9a;
 }
 
 .style01 .interactive .row,
 .style01 .titleContainer .row {
-    width: 100%;
-    height: 20px;
+  width: 100%;
+  height: 20px;
 }
 /* 
 .style01 .interactive .row01:hover { background-color: purple; }
@@ -49,24 +49,24 @@
 .style01 .interactive .row03:hover { background-color: yellow; } */
 
 .style01 .barContainer {
-    position: relative;
-    box-sizing: border-box;
+  position: relative;
+  box-sizing: border-box;
 
-    padding: 3px 9px 3px 6px;
-    background-color: #dddddd;
-    vertical-align: middle;
+  padding: 3px 9px 3px 6px;
+  background-color: #dddddd;
+  vertical-align: middle;
 
-    border: 1px solid black;
-    border-radius: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .style01 .marker {
-    bottom: -20%;
-    height: calc(100% + 20px);
-    width: 4px;
+  bottom: -20%;
+  height: calc(100% + 20px);
+  width: 4px;
 
-    background-color: #ff0000;
-    position: absolute;
-    box-sizing: border-box;
-    left: 200px;
+  background-color: #ff0000;
+  position: absolute;
+  box-sizing: border-box;
+  left: 200px;
 }
