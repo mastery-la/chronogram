@@ -55,7 +55,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   t.access_token = token
   t.userId = tokenPayload['user_id']
   t.teamId = tokenPayload['team_id']
-  c.token = t
+  c.authorization = t
 
   // if we have a valid token and team id, we register the webhook
   if (token != '') {

@@ -8,6 +8,9 @@ export class Deployment extends Typegoose {
   @prop({ required: true })
   url?: string
 
+  @prop({ required: true })
+  ownerId?: string
+
   @prop()
   name?: string
 

@@ -7,7 +7,7 @@
       "src": "src/endpoints/**/*.ts",
       "use": "@now/node@canary",
       "config": {
-        "maxLambdaSize": "15mb"
+        "maxLambdaSize": "50mb"
       }
     }
   ],

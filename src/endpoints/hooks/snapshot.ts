@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { json, send } from 'micro'
 import { formatURL, createURLSnapshot } from '../../utils/format-url'
-import { getScreenshot } from '../../utils/proxy'
+import { getScreenshot } from '../../utils/screenshot'
 import { saveImage } from '../../utils/storage'
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
@@ -49,7 +49,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         throw 'invalid snapshot from url'
       }
 
-      const data = await getScreenshot(formattedURL)
+      const data = await getScreenshot(formattedURL.toString())
       const imageURL = await saveImage(userID, snapshot, data)
 
       const result: ScreenshotResult = {

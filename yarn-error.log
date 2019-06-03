@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/12.1.0/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js add -D @types/await-sleep
+  /usr/local/Cellar/node/12.1.0/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js add -D @types/chrome-aws-lambda
 
 PATH: 
   /usr/local/opt/gettext/bin:/Users/spencer/.rbenv/shims:/Users/spencer/.rbenv/bin:/Users/spencer/.cargo/bin:/Users/spencer/.rbenv/bin:/usr/local/git/bin:/usr/local/bin:/Users/spencer/Library/Python/3.6/bin:/Users/spencer/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/usr/local/bin:/Users/spencer/go/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fawait-sleep: Not found
+  Error: https://registry.yarnpkg.com/@types%2fchrome-aws-lambda: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:66058:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:129541:22)
       at Request.emit (events.js:196:13)

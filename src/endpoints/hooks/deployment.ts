@@ -23,24 +23,28 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   const url = data.payload.url
   const userID: string | null = data.userId || data.teamId || null
 
+  if (!userID) {
+    send(res, 400)
+    return
+  }
+
   const d = new DeploymentModel()
 
   const config = await ConfigurationModel.findOne({
-    'token.userId': userID
+    'authorization.userId': userID
   })
   if (!config) {
-    return send(res, 409)
+    return send(res, 400)
   }
 
   if (config) {
     d.url = url
     d.createdAt = data.createdAt
     d.deploymentId = deploymentId
+    d.ownerId = userID
     await d.save()
-
-    await config.updateOne({ $push: { deployments: d } })
   }
-  const token = config.token as Token
+  const token = config.authorization as Token
   await checkDeploymentReady(token.access_token || '', deploymentId)
 
   const snapshot = await fetch(process.env.BASE_URL + '/hooks/snapshot', {
