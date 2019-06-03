@@ -15,6 +15,9 @@ export class Deployment extends Typegoose {
     project?: string
 
     @prop()
+    createdAt?: number
+
+    @prop()
     snapshot?: Snapshot
 }
 

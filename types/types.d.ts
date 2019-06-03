@@ -1,5 +1,3 @@
-import deployment from '../src/endpoints/hooks/deployment'
-
 declare interface ZEITUser {
     uid: string
     email: string
@@ -33,9 +31,11 @@ declare interface URLSnapshot {
 declare interface ScreenshotPayload {
     url?: string
     userID?: string
+    deploymentId?: string
 }
 
 declare interface ScreenshotResult {
+    deploymentId?: string
     url?: string
     screenshot?: string
     error?: string

@@ -3,6 +3,7 @@ import { json, send } from 'micro'
 import fetch from '../../utils/fetch'
 import * as mongoose from 'mongoose'
 import { ConfigurationModel, DeploymentModel } from '../../models'
+import { Snapshot } from '../../models/snapshot'
 
 mongoose.connect(process.env.MONGO_URL || '', { useNewUrlParser: true })
 
@@ -14,13 +15,15 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     const url = data.payload.url
     const userID: string | null = data.userId || data.teamId || null
 
+    const d = new DeploymentModel()
+
     if (data.userId) {
         const config = await ConfigurationModel.findOne({
             'token.userId': userID
         })
         if (config) {
-            const d = new DeploymentModel()
             d.url = url
+            d.createdAt = data.createdAt
             d.deploymentId = deploymentId
             await d.save()
 
@@ -37,8 +40,14 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
             deploymentId
         })
     })
-    const reply = await snapshot.json()
+    const reply: ScreenshotResult = await snapshot.json()
     console.log('snapshot', reply)
+
+    const s = new Snapshot()
+    s.webpageURL = reply.url
+    s.screenshotURL = reply.screenshot
+    d.snapshot = s
+    await d.save()
 
     send(res, 200, data)
 }
