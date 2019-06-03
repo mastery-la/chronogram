@@ -1,32 +1,32 @@
 {
-    "name": "chronogram",
-    "alias": ["chronogram.now.sh", "chronogram.tech"],
-    "version": 2,
-    "builds": [
-        {
-            "src": "src/endpoints/**/*.ts",
-            "use": "@now/node@canary",
-            "config": {
-                "maxLambdaSize": "15mb"
-            }
-        }
-    ],
-    "routes": [
-        {
-            "src": "/",
-            "dest": "src/endpoints/hooks/ui.ts"
-        },
-        {
-            "src": "/hooks/(.*)",
-            "dest": "src/endpoints/hooks/$1.ts"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "src/endpoints/$1"
-        }
-    ],
-    "env": {
-        "STORAGE_BUCKET": "chronogram",
-        "BASE_URL": "https://61356f1c.ngrok.io"
+  "name": "chronogram",
+  "alias": ["chronogram.now.sh", "chronogram.tech"],
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/endpoints/**/*.ts",
+      "use": "@now/node@canary",
+      "config": {
+        "maxLambdaSize": "15mb"
+      }
     }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "src/endpoints/hooks/ui.ts"
+    },
+    {
+      "src": "/hooks/(.*)",
+      "dest": "src/endpoints/hooks/$1.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "src/endpoints/$1"
+    }
+  ],
+  "env": {
+    "STORAGE_BUCKET": "chronogram",
+    "BASE_URL": "https://chronogram.tech"
+  }
 }
