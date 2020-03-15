@@ -16,7 +16,7 @@
     "googleapis": "^39.2.0",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
-    "mongoose": "^5.5.12",
+    "mongoose": "^5.7.5",
     "ms": "^2.1.1",
     "node-fetch": "^2.6.0",
     "puppeteer": "^1.17.0",
